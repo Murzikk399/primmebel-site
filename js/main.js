@@ -27,8 +27,9 @@
   /* В превью на claude.ai сторонние iframe (Sketchfab, Яндекс Карты)
      запрещены, поэтому там показываем заглушки со ссылками.
      На собственном хостинге всё встраивается как обычно. */
-  var host = location.hostname;
-  var embedsAllowed = !/claude|anthropic/i.test(host) && location.protocol !== "file:";
+  var framed = false;
+  try { framed = window.self !== window.top; } catch (e) { framed = true; }
+  var embedsAllowed = !framed && !/claude|anthropic/i.test(location.hostname) && location.protocol !== "file:";
   if (/[?&]embeds=0/.test(location.search)) embedsAllowed = false;
 
   /* ---------- подстановка контактов из config.js ---------- */
