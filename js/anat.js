@@ -4,9 +4,7 @@
   var wrap = document.querySelector(".anat");
   if (!wrap) return;
   var dots = wrap.querySelectorAll(".an-dot"), items = wrap.querySelectorAll(".an-list li");
-  var cur = null;
   function show(n, scroll) {
-    cur = n;
     dots.forEach(function (d) { d.setAttribute("aria-pressed", d.getAttribute("data-n") === n); });
     items.forEach(function (li) { li.classList.toggle("on", li.getAttribute("data-n") === n); });
     var li = wrap.querySelector('.an-list li[data-n="' + n + '"]');

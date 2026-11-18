@@ -134,8 +134,9 @@ p { margin: 0 0 var(--s3); }
 .gallery .ph { aspect-ratio: 1.618 / 1; background: var(--light); }
 .gallery figure.wide .ph { aspect-ratio: 3.236 / 1; }
 .gallery .ph img { width: 100%; height: 100%; object-fit: cover; }
-.gallery figcaption { padding: var(--s2) var(--s3); font-size: .92rem; display: flex; justify-content: space-between; gap: var(--s2); }
-.gallery figcaption span { color: var(--muted); white-space: nowrap; }
+.gallery figcaption { font-size: .92rem; }
+.gallery .cap { padding: var(--s2) var(--s3); display: flex; justify-content: space-between; gap: var(--s2); }
+.gallery .cap span { color: var(--muted); white-space: nowrap; }
 .gallery figure[hidden] { display: none; }
 @media (max-width: 900px) { .gallery { grid-template-columns: 1fr 1fr; } .gallery figure.wide { grid-column: span 2; } }
 @media (max-width: 560px) { .gallery { grid-template-columns: 1fr; } .gallery figure.wide { grid-column: auto; } .gallery figure.wide .ph { aspect-ratio: 1.618 / 1; } }
@@ -441,8 +442,8 @@ p { margin: 0 0 var(--s3); }
 .h-verdict.up, .h-verdict.down { background: #FFF5DD; }
 .h-two { font-size: .95rem; color: var(--graphite-2); }
 .height-art svg { width: 100%; height: auto; display: block; background: #F6F6F3; border-radius: 12px; }
-.h-lbl, .h-std, .h-dim { font-family: var(--font); font-size: 15px; fill: var(--graphite-2); font-weight: 700; }
-.h-dim { fill: #6F8A1F; font-size: 17px; }
+.h-lbl, .h-std, .h-dim { font-family: var(--font); font-size: 16px; fill: var(--graphite-2); font-weight: 700; paint-order: stroke; stroke: #F6F6F3; stroke-width: 5px; stroke-linejoin: round; }
+.h-dim { fill: #6F8A1F; font-size: 22px; font-weight: 800; }
 .h-std { fill: #6F8A1F; font-weight: 600; }
 .person, .height-art rect { transition: all .3s ease; }
 
@@ -496,3 +497,4 @@ p { margin: 0 0 var(--s3); }
 .tri-legend { display: flex; flex-wrap: wrap; gap: var(--s3); margin: .6rem 0 0; font-weight: 700; font-size: .92rem; }
 .tri-legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: .4rem; vertical-align: -2px; }
 @media (hover: none) { .tri-kb { display: block; } }
+.h-field { display: grid; gap: .3rem; font-weight: 600; font-size: .92rem; }

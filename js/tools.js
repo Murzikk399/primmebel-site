@@ -1,7 +1,6 @@
 /* Инструменты: высота столешницы, рабочий треугольник, ящик с доводчиком. */
 (function () {
   "use strict";
-  var NS = "http://www.w3.org/2000/svg";
   function $(s, r) { return (r || document).querySelector(s); }
   function goal(n) { try { if (window.SITE && window.SITE.metrikaId && window.ym) window.ym(window.SITE.metrikaId, "reachGoal", n); } catch (e) {} }
 
@@ -69,22 +68,24 @@
         "</g>" + (label ? '<text x="' + x + '" y="' + (floor - H2 - 10) + '" text-anchor="middle" class="h-lbl">' + label + "</text>" : "");
     }
     function draw(rs, hs) {
+      // масштаб 1 см = 2 px, пол на y = 440; шкаф справа, размеры – правее шкафа
       var floor = 440, s = 2, mid = (rs[0].lo + rs[0].hi) / 2, topY = floor - mid * s;
-      var g = '<svg viewBox="0 0 520 460" role="img" aria-label="Человек у столешницы рекомендованной высоты">' +
-        '<rect x="0" y="440" width="520" height="20" fill="#D8CFC2"/>' +
-        // стандарт 85–90
-        '<rect x="0" y="' + (floor - STD_HI * s) + '" width="520" height="' + ((STD_HI - STD_LO) * s) + '" fill="#A5C33C" opacity=".12"/>' +
-        '<text x="512" y="' + (floor - STD_HI * s - 6) + '" text-anchor="end" class="h-std">стандарт 85–90 см</text>' +
+      var stdY = floor - STD_HI * s;
+      var g = '<svg viewBox="0 0 600 460" role="img" aria-label="Человек у столешницы высотой ' + Math.round(mid) + ' см">' +
+        '<rect x="0" y="440" width="600" height="20" fill="#D8CFC2"/>' +
+        // полоса стандарта 85–90 см
+        '<rect x="0" y="' + stdY + '" width="600" height="' + ((STD_HI - STD_LO) * s) + '" fill="#A5C33C" opacity=".14"/>' +
+        '<text x="10" y="' + (stdY - 8) + '" class="h-std">стандарт 85–90 см</text>' +
         // кухонный модуль
-        '<rect x="250" y="' + (topY + 8) + '" width="230" height="' + (floor - topY - 8) + '" fill="#A9B8A0"/>' +
-        '<rect x="250" y="' + (floor - 20) + '" width="230" height="20" fill="#3C4146"/>' +
-        '<rect x="244" y="' + topY + '" width="242" height="8" fill="#C9A27A"/>' +
-        '<rect x="340" y="' + (topY + 26) + '" width="50" height="4" rx="2" fill="#2B2F33"/>' +
-        // размерная линия
-        '<path d="M500 ' + topY + " V" + floor + '" stroke="#6F8A1F" stroke-width="2"/><path d="M494 ' + topY + " h12 M494 " + floor + ' h12" stroke="#6F8A1F" stroke-width="2"/>' +
-        '<text x="494" y="' + ((topY + floor) / 2) + '" text-anchor="end" class="h-dim">' + Math.round(mid) + " см</text>";
-      g += person(190, hs[0], mid, "#2B2F33", hs.length > 1 ? "Вы" : "");
-      if (hs.length > 1) g += person(110, hs[1], (rs[1].lo + rs[1].hi) / 2, "#8A9096", "Второй");
+        '<rect x="236" y="' + (topY + 8) + '" width="220" height="' + (floor - topY - 8) + '" fill="#A9B8A0"/>' +
+        '<rect x="236" y="' + (floor - 20) + '" width="220" height="20" fill="#3C4146"/>' +
+        '<rect x="230" y="' + topY + '" width="232" height="8" fill="#C9A27A"/>' +
+        '<rect x="321" y="' + (topY + 26) + '" width="50" height="4" rx="2" fill="#2B2F33"/>' +
+        // размерная линия справа от шкафа
+        '<path d="M486 ' + topY + " V" + floor + '" stroke="#6F8A1F" stroke-width="2"/><path d="M479 ' + topY + " h14 M479 " + floor + ' h14" stroke="#6F8A1F" stroke-width="2"/>' +
+        '<text x="500" y="' + ((topY + floor) / 2 + 6) + '" class="h-dim">' + Math.round(mid) + " см</text>";
+      g += person(176, hs[0], mid, "#2B2F33", hs.length > 1 ? "Вы" : "");
+      if (hs.length > 1) g += person(96, hs[1], (rs[1].lo + rs[1].hi) / 2, "#8A9096", "Второй");
       art.innerHTML = g + "</svg>";
     }
     function update() {
@@ -106,12 +107,16 @@
       draw(rs, hs);
     }
     hRange.addEventListener("input", function () { hIn.value = hRange.value; update(); });
-    hIn.addEventListener("input", function () { var v = num(hIn, 140, 210); if (v) hRange.value = v; update(); });
+    hIn.addEventListener("input", function () {
+      var v = parseFloat(hIn.value);
+      if (isNaN(v) || v < 140 || v > 210) return; // ждём, пока число будет допечатано; крайние случаи исправит change
+      hRange.value = v; update();
+    });
     hIn.addEventListener("change", function () { var v = num(hIn, 140, 210); hIn.value = v || 168; hRange.value = hIn.value; update(); });
-    eIn.addEventListener("input", update);
+    eIn.addEventListener("input", function () { var v = parseFloat(eIn.value); if (eIn.value.trim() === "" || (v >= 80 && v <= 140)) update(); });
     eIn.addEventListener("change", function () { if (eIn.value.trim()) { var v = num(eIn, 80, 140); eIn.value = v || ""; } update(); });
     h2Toggle.addEventListener("change", function () { h2Wrap.hidden = !h2Toggle.checked; update(); });
-    h2In.addEventListener("input", update);
+    h2In.addEventListener("input", function () { var v = parseFloat(h2In.value); if (v >= 140 && v <= 210) update(); });
     h2In.addEventListener("change", function () { h2In.value = num(h2In, 140, 210) || 160; update(); });
     update();
   }
@@ -162,7 +167,7 @@
       if (id === "sink") inner = '<rect x="' + (-w / 2 + 8) + '" y="-18" width="' + (w - 16) + '" height="34" rx="8" fill="#fff" opacity=".85"/><circle cx="0" cy="-20" r="3" fill="#fff"/>';
       if (id === "stove") inner = [[-14, -12], [14, -12], [-14, 12], [14, 12]].map(function (c) { return '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="8" fill="none" stroke="#fff" stroke-width="2.5"/>'; }).join("");
       if (id === "fridge") inner = '<rect x="-22" y="-20" width="44" height="40" rx="3" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M-22 -4 h44" stroke="#fff" stroke-width="2.5"/>';
-      return '<g class="tri-item" data-id="' + id + '" tabindex="0" role="slider" aria-label="' + it.n + ': перетащите или двигайте стрелками" transform="translate(' + p.x + " " + p.y + ')">' +
+      return '<g class="tri-item" data-id="' + id + '" tabindex="0" role="slider" aria-label="' + it.n + ': перетащите или двигайте стрелками" aria-valuetext="' + (pos[id].wall === "top" ? "у окна, " : "у левой стены, ") + (pos[id].t / 100).toFixed(1).replace(".", ",") + ' м от угла" transform="translate(' + p.x + " " + p.y + ')">' +
         '<g transform="rotate(' + rot + ')"><rect x="' + (-w / 2) + '" y="' + (-d / 2) + '" width="' + w + '" height="' + d + '" rx="6" fill="' + it.c + '"/>' + inner + "</g>" +
         "<title>" + it.n + "</title></g>";
     }

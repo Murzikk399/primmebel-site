@@ -187,7 +187,7 @@
     root.innerHTML =
       '<div class="quiz-bar"><i style="width:100%"></i></div>' + priceBlock +
       '<form class="form quiz-form" novalidate>' +
-      '<div class="quiz-two"><label>Имя<input name="name" autocomplete="name" required></label>' +
+      '<div class="quiz-two"><label>Имя<input name="name" type="text" autocomplete="name" required></label>' +
       '<label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></label></div>' +
       '<details><summary>Уточнить размеры (необязательно)</summary><label>Длина стен, высота потолка, особенности<textarea name="details" placeholder="Например: стены 3,2 и 2,1 м, потолок 2,7 м, справа окно"></textarea></label>' +
       '<p class="quiz-hint">Фото помещения можно отправить следом в мессенджер.</p></details>' +
