@@ -197,7 +197,12 @@
       '<div class="quiz-sent" hidden></div>' +
       '<div class="quiz-nav"><button type="button" class="btn btn-ghost btn-sm quiz-back">← Изменить ответы</button><button type="button" class="btn btn-ghost btn-sm quiz-restart">Начать заново</button></div>';
     root.querySelector(".quiz-back").onclick = function () { i = flow.length - 1; render(); focusQ(); };
-    root.querySelector(".quiz-restart").onclick = function () { A = {}; flow = FLOW.kitchen; i = 0; render(); focusQ(); };
+    root.querySelector(".quiz-restart").onclick = function () {
+      A = {}; flow = FLOW.kitchen; i = 0;
+      var pre1 = null; try { pre1 = JSON.parse(root.getAttribute("data-pre") || "null"); } catch (x) {}
+      if (pre1) { Object.keys(pre1).forEach(function (k) { setAnswer(k, pre1[k]); }); i = firstUnanswered(); }
+      render(); focusQ();
+    };
     var f = root.querySelector(".quiz-form"), err = f.querySelector(".error");
     f.onsubmit = function (ev) {
       ev.preventDefault();
@@ -267,5 +272,13 @@
     el.setAttribute("data-quiz", JSON.stringify(pre));
   });
 
+  // на страницах кухонь, шкафов и офиса изделие уже выбрано: data-pre='{"product":"kitchen"}'
+  if (root && root.getAttribute("data-pre")) {
+    try {
+      var pre0 = JSON.parse(root.getAttribute("data-pre"));
+      Object.keys(pre0).forEach(function (k) { setAnswer(k, pre0[k]); });
+      i = firstUnanswered();
+    } catch (x) {}
+  }
   if (root) render();
 })();

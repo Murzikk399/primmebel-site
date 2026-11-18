@@ -55,8 +55,8 @@
   fab.innerHTML =
     '<div class="fab-list" id="fab-list">' +
       '<a href="' + S.max + '" target="_blank" rel="noopener" data-goal="messenger_click"><i style="background:linear-gradient(135deg,#3E5BFF,#9B3CFF)">' + I.max + '</i>MAX</a>' +
-      '<a href="' + S.telegram + '" target="_blank" rel="noopener" data-goal="messenger_click"><i style="background:#229ED9">' + I.tg + '</i>Telegram</a>' +
-      '<a href="' + S.whatsapp + '" target="_blank" rel="noopener" data-goal="messenger_click"><i style="background:#1FAF54">' + I.wa + '</i>WhatsApp</a>' +
+      '<a href="' + S.telegram + '" target="_blank" rel="noopener" data-goal="messenger_click"><i style="background:#1A74A3">' + I.tg + '</i>Telegram</a>' +
+      '<a href="' + S.whatsapp + '" target="_blank" rel="noopener" data-goal="messenger_click"><i style="background:#15803D">' + I.wa + '</i>WhatsApp</a>' +
       '<a href="tel:' + S.phoneHref + '" data-goal="phone_click"><i style="background:#2B2F33">' + I.ph + '</i>' + S.phone + '</a>' +
     '</div>' +
     '<button class="fab-toggle" type="button" aria-expanded="false" aria-controls="fab-list" aria-label="Связаться с нами"><span class="fab-pulse"></span>' + I.chat + '</button>';
