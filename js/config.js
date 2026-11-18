@@ -36,6 +36,23 @@ window.SITE = {
 
   /* ---------- Яндекс Метрика ----------
      Номер счётчика. Цели: zamer_click, form_send, messenger_click,
-     phone_click, model_view.                                     */
-  metrikaId: 0
+     phone_click, model_view, quiz_start, quiz_done, video_call.  */
+  metrikaId: 0,
+
+  /* ---------- ЦЕНЫ ДЛЯ КВИЗА И ПОДПИСЕЙ К ПРИМЕРАМ ----------
+     Рубли за погонный метр, без техники, мойки и смесителя.
+     Пока стоит 0 – сайт цифр не показывает, а обещает прислать
+     расчёт в мессенджер. Впишите цены – вилка появится сама.     */
+  prices: {
+    // кухня: нижний + верхний ряд, за метр, по материалу фасадов
+    kitchen: { ldsp: 0, mdf_film: 0, mdf_enamel: 0, plastic: 0 },
+    // столешница, за метр
+    worktop: { ldsp: 0, hpl: 0, acryl: 0, quartz: 0 },
+    // шкаф высотой до 2,7 м, за метр ширины, по материалу фасадов
+    wardrobe: { ldsp: 0, mdf_film: 0, mdf_enamel: 0, mirror: 0 },
+    // во сколько раз дороже прямой кухни
+    kitchenShape: { straight: 1, corner: 1.15, u: 1.3, island: 1.45 },
+    wardrobeType: { kupe: 1, swing: 0.95, walkin: 0.85 },
+    spread: 0.15   // ширина вилки: ±15 %
+  }
 };
