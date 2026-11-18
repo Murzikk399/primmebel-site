@@ -552,3 +552,14 @@ p { margin: 0 0 var(--s3); }
 .guide-toc a:hover { border-color: var(--green); }
 .product .more-wrap { margin-top: auto; margin-bottom: var(--s3); }
 .product .actions { margin-top: 0; }
+
+/* выравнивание: карточки галереи одной высоты, кнопка цены всегда внизу */
+.gallery figure { display: flex; flex-direction: column; }
+.gallery figcaption { flex: 1; display: flex; flex-direction: column; }
+.gallery .est { margin-top: auto; }
+.grid-2.align-stretch { align-items: stretch; }
+.side-card { background: var(--light); border-radius: var(--radius); padding: var(--s4); display: flex; flex-direction: column; gap: var(--s3); }
+.side-card h3 { margin: 0; }
+.side-card .btn { align-self: flex-start; margin-top: auto; }
+.price-factors { align-content: start; }
+.faqs { align-content: start; }
