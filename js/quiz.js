@@ -77,6 +77,7 @@
 
   function summary(a) {
     var lines = ["Здравствуйте! Хочу рассчитать стоимость.", "Что: " + L.product[a.product]];
+    if (a.colors) lines.push("Собрал в конструкторе: " + a.colors);
     if (a.product === "kitchen") {
       lines.push("Форма: " + L.shape[a.shape], "Длина: " + (+a.length).toFixed(1).replace(".", ",") + " м",
         "Фасады: " + L.facade[a.facade], "Столешница: " + L.worktop[a.worktop], "Техника: " + L.tech[a.tech]);
@@ -182,6 +183,7 @@
       '<p class="quiz-price-label">Спасибо, всё понятно!</p><p class="quiz-price small">Пришлём расчёт в мессенджер</p>' +
       '<p class="quiz-hint">' + (A.product === "office" ? "Офисную мебель считаем по списку – оставьте контакты, и мы свяжемся." :
         "Обычно отвечаем в течение рабочего дня. Чтобы цена была точнее, ниже можно указать размеры стен.") + "</p>";
+    if (A.colors) priceBlock += '<p class="quiz-colors"><b>Ваша кухня из конструктора:</b> ' + esc(A.colors) + "</p>";
     root.innerHTML =
       '<div class="quiz-bar"><i style="width:100%"></i></div>' + priceBlock +
       '<form class="form quiz-form" novalidate>' +
@@ -245,6 +247,7 @@
     if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(focusQ, 400);
   }
+  window.PRIM_QUIZ.open = function (pre) { if (!started) { started = true; goal("quiz_start"); } openQuiz(pre); };
   document.addEventListener("click", function (e) {
     var t = e.target.closest("[data-quiz]");
     if (!t || !root) return;
