@@ -191,7 +191,7 @@
       '<label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></label></div>' +
       '<details><summary>Уточнить размеры (необязательно)</summary><label>Длина стен, высота потолка, особенности<textarea name="details" placeholder="Например: стены 3,2 и 2,1 м, потолок 2,7 м, справа окно"></textarea></label>' +
       '<p class="quiz-hint">Фото помещения можно отправить следом в мессенджер.</p></details>' +
-      '<label class="agree"><input type="checkbox" name="agree" checked> <span>Согласен на обработку персональных данных по <a href="politika.html">политике конфиденциальности</a></span></label>' +
+      '<label class="agree"><input type="checkbox" name="agree"> <span>Согласен на обработку персональных данных по <a href="politika.html">политике конфиденциальности</a></span></label>' +
       '<p class="error" role="alert"></p>' +
       '<button class="btn btn-primary" type="submit">Получить точный расчёт</button></form>' +
       '<div class="quiz-sent" hidden></div>' +
