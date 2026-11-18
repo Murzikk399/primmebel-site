@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=25845f35">
+<link rel="stylesheet" href="css/style.css?v=18fc05ef">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FurnitureStore", "name": "ПРИМ – мебель на заказ", "url": "https://primmebel.pro/", "telephone": "+7 929 161-80-33", "email": "zakaz@primmebel.pro", "description": "Проектирование, изготовление и монтаж корпусной мебели на заказ: кухни, шкафы, офисная мебель.", "address": {"@type": "PostalAddress", "streetAddress": "ул. Рыбников, 91", "addressLocality": "Калининград", "postalCode": "236023", "addressCountry": "RU"}, "areaServed": ["Калининград", "Калининградская область"], "sameAs": ["https://t.me/primmpro"]}</script>
 </head>
 <body>
@@ -178,6 +178,87 @@
   </div>
 </section>
 
+<section class="section" id="instrumenty">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Проверьте сами</span>
+      <h2>Три маленьких инструмента для будущей кухни</h2>
+      <p class="lead">Поиграйте – и узнаете о кухне больше, чем в любом каталоге.</p>
+    </div>
+    <div class="tool-tabs" role="tablist" aria-label="Инструменты">
+      <button class="tool-tab" role="tab" id="tab-height" data-tab="height" aria-controls="tool-height" aria-selected="true">📏 Высота столешницы</button>
+      <button class="tool-tab" role="tab" id="tab-triangle" data-tab="triangle" aria-controls="tool-triangle" aria-selected="false" tabindex="-1">📐 Рабочий треугольник</button>
+      <button class="tool-tab" role="tab" id="tab-drawer" data-tab="drawer" aria-controls="tool-drawer" aria-selected="false" tabindex="-1">🗄 Ящик с доводчиком</button>
+    </div>
+
+    <div class="tool-panel" id="tool-height" role="tabpanel" aria-labelledby="tab-height">
+      <div class="tool-grid">
+        <div>
+          <h3>Какая высота столешницы удобна именно вам</h3>
+          <p class="muted">Удобно, когда столешница на 10–15 см ниже согнутого локтя. Стандартные кухни делают высотой 85–90 см, а людям разного роста подходит разное.</p>
+          <div class="form">
+            <label>Ваш рост, см
+              <div class="h-row"><input type="range" name="h1r" min="140" max="210" step="1" value="168" aria-label="Рост"><input name="h1" type="number" inputmode="numeric" min="140" max="210" value="168"></div>
+            </label>
+            <label>Высота локтя от пола, см <span class="muted">(необязательно, но точнее)</span>
+              <input name="elbow" type="number" inputmode="numeric" min="80" max="140" placeholder="Встаньте ровно, согните руку под прямым углом и измерьте до пола">
+            </label>
+            <label class="agree"><input type="checkbox" name="two"> <span>Готовим вдвоём – добавить второй рост</span></label>
+            <label class="h2-wrap" hidden>Рост второго человека, см<input name="h2" type="number" inputmode="numeric" min="140" max="210" value="160"></label>
+          </div>
+          <div class="height-out" aria-live="polite"></div>
+        </div>
+        <div class="height-art"></div>
+      </div>
+    </div>
+
+    <div class="tool-panel" id="tool-triangle" role="tabpanel" aria-labelledby="tab-triangle" hidden>
+      <div class="tool-grid">
+        <div class="tri-plan">
+          <svg viewBox="-20 -20 440 360" role="application" aria-label="План кухни: перетаскивайте мойку, плиту и холодильник вдоль столешницы">
+            <rect x="0" y="0" width="400" height="320" fill="#FBFBF9"/>
+            <path d="M0 0 H400 V320 H0 Z" fill="none" stroke="#2B2F33" stroke-width="8"/>
+            <rect x="150" y="-6" width="120" height="12" fill="#CFE0EA" stroke="#2B2F33" stroke-width="2"/>
+            <text x="210" y="-10" text-anchor="middle" class="tri-note">окно</text>
+            <path d="M400 230 a80 80 0 0 0 -80 80" fill="none" stroke="#9AA0A6" stroke-width="2" stroke-dasharray="5 5"/>
+            <rect x="396" y="230" width="8" height="80" fill="#FBFBF9"/>
+            <text x="360" y="300" text-anchor="middle" class="tri-note">дверь</text>
+            <path d="M0 0 H400 V60 H60 V320 H0 Z" fill="#E9E2D8" stroke="#C9BBA8" stroke-width="1.5"/>
+            
+            <g class="tri-legs"></g><g class="tri-items"></g>
+          </svg>
+          <p class="tri-legend"><span><i style="background:#5B8FC9"></i>Мойка</span><span><i style="background:#E07B39"></i>Плита</span><span><i style="background:#6F8A1F"></i>Холодильник</span></p><p class="muted tri-kb">Перетаскивайте технику вдоль столешницы. С клавиатуры: Tab – выбрать, стрелки – двигать.</p>
+        </div>
+        <div>
+          <h3>Мойка, плита, холодильник</h3>
+          <p class="muted">Правило проектировщиков: между этими тремя точками – от 1,2 до 2,7 м, а всего – не больше 7,9 м. Ближе – тесно, дальше – много лишних шагов.</p>
+          <div class="tri-info" aria-live="polite"></div>
+          <div class="tri-actions"><button type="button" class="btn btn-ghost btn-sm tri-good">Показать удачный вариант</button><button type="button" class="btn btn-ghost btn-sm tri-reset">Сначала</button></div>
+          <p class="mt"><a class="btn btn-primary btn-sm" href="#raschet" data-quiz='{"product":"kitchen"}'>Спроектируем вашу кухню →</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-panel" id="tool-drawer" role="tabpanel" aria-labelledby="tab-drawer" hidden>
+      <h3>Откройте и закройте – почувствуйте разницу</h3>
+      <p class="muted">Слева обычный ящик, справа – с доводчиком: последние сантиметры он дотягивает сам, мягко и тихо. <button type="button" class="linkish dr-sound" aria-pressed="false">🔈 Включить звук</button></p>
+      <div class="dr-row">
+        <div class="dr" data-kind="slam">
+          <p class="dr-title">Обычный ящик</p>
+          <div class="dr-stage"><div class="dr-cab"></div><div class="dr-drawer" role="presentation"><i class="plate p1"></i><i class="plate p2"></i><i class="cup"></i><span class="dr-knob"></span></div><span class="dr-said" aria-live="polite"></span></div>
+          <button type="button" class="btn btn-ghost btn-sm dr-btn" aria-label="Открыть обычный ящик">Открыть</button>
+        </div>
+        <div class="dr" data-kind="soft">
+          <p class="dr-title">С доводчиком</p>
+          <div class="dr-stage"><div class="dr-cab"></div><div class="dr-drawer" role="presentation"><i class="plate p1"></i><i class="plate p2"></i><i class="cup"></i><span class="dr-knob"></span></div><span class="dr-said" aria-live="polite"></span></div>
+          <button type="button" class="btn btn-primary btn-sm dr-btn" aria-label="Открыть ящик с доводчиком">Открыть</button>
+        </div>
+      </div>
+      <p class="muted center mt">Доводчики на ящиках и петлях – в каждой нашей кухне. <a href="sovety/vybor-furnitury.html">Подробнее о фурнитуре →</a></p>
+    </div>
+  </div>
+</section>
+
 <section class="section" style="padding-top:0">
   <div class="container">
     <div class="video-band" id="video">
@@ -323,6 +404,6 @@
 </footer>
 <script src="js/config.js?v=bb22349b"></script>
 <script src="js/main.js?v=70dba2c5"></script>
-<script src="js/quiz.js?v=1263ec6a"></script><script src="js/konfig.js?v=7b988159"></script><script src="js/anat.js?v=1ad248ce"></script>
+<script src="js/quiz.js?v=1263ec6a"></script><script src="js/konfig.js?v=7b988159"></script><script src="js/anat.js?v=1ad248ce"></script><script src="js/tools.js?v=e0c869ef"></script>
 </body>
 </html>
